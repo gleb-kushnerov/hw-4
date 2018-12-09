@@ -1,3 +1,5 @@
+@import "animation.css";
+
 html {
     height: 100%;
 }
@@ -5,35 +7,77 @@ html {
 body {
     margin: 0;
     min-height: 100%;
+    font-family: sans-serif;
+    font-size: 1.5em;
+    text-transform: uppercase;
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-columns: repeat(12, 8.33%);
     grid-auto-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    perspective: 1000px;
 }
 
 div {
+    box-sizing: border-box;
     border: 1px solid #000;
+    text-align: center;
+    position: relative;
+    transform-style: preserve-3d;
+    perspective: 500px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    white-space: nowrap;
+}
+
+div:nth-child(2n+3) {
+    animation: change-color-gray 1s infinite 2s linear alternate-reverse;
+}
+
+div:nth-child(4n+1) {
+    animation: change-color-gray 2s infinite linear alternate;
 }
 
 .main {
-    background-color: #312369;
     grid-column: 2 / span 2;
-    grid-row: 4 / span 1
+    grid-row: 4 / span 1;
 }
 
 .photo-gallery {
-    background-color: #025178;
     grid-column: 5 / span 1;
-    grid-row: 3 / span 3
+    grid-row: 3 / span 3;
+}
+
+.photo-gallery p {
+    margin: 0;
+    flex: 1 1 auto;
+    transform: rotate(-90deg);
+    animation: color-change 3s linear;
+
 }
 
 .portfolio {
-    background-color: #9fab13;
     grid-column: 7 / span 2;
-    grid-row: 6 / span 1
+    grid-row: 6 / span 1;
 }
 
 .contacts {
-    background-color: #23692e;
     grid-column: 9 / span 2;
-    grid-row: 4 / span 1
+    grid-row: 4 / span 1;
+}
+
+.top {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border: 1px solid #000;
+    transform-origin: top;
+    transform: rotateX(-99deg);
+    background-color: red;
+}
+
+.button:hover {
+    transform: translateZ(50px);
+    border: 2px solid #000;
+    z-index: 2;
+    animation: color-rainbow 4s infinite linear alternate, rainbow 2s infinite linear alternate-reverse;
 }
