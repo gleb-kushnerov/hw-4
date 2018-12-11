@@ -21,20 +21,29 @@ div {
     border: 1px solid #000;
     text-align: center;
     position: relative;
-    transform-style: preserve-3d;
-    perspective: 500px;
     display: flex;
     justify-content: center;
     align-items: center;
     white-space: nowrap;
+    z-index: 2;
+    transition: 0.3s ease;
+    transform-style: flat;
 }
 
-div:nth-child(2n+3) {
-    animation: change-color-gray 1s infinite 2s linear alternate-reverse;
+div:nth-child(odd) {
+    animation: change-color-gray 2s infinite  ease alternate-reverse;
 }
 
-div:nth-child(4n+1) {
-    animation: change-color-gray 2s infinite linear alternate;
+div:nth-child(even) {
+    animation: change-color-gray-2 4s infinite linear alternate;
+}
+
+div:nth-child(even).gray-1 {
+    animation: change-color-gray-2 4s infinite linear alternate-reverse;
+}
+
+div:nth-child(even).gray-1 {
+    animation: change-color-gray 4s infinite linear alternate;
 }
 
 .main {
@@ -65,19 +74,55 @@ div:nth-child(4n+1) {
     grid-row: 4 / span 1;
 }
 
-.top {
+.edge {
+    box-sizing: border-box;
     position: absolute;
-    width: 100%;
-    height: 100%;
     border: 1px solid #000;
+    z-index: 1;
+}
+
+.top {
+    width: calc(100% + 2px);
+    height: 50px;
+    top: -1px;
     transform-origin: top;
-    transform: rotateX(-99deg);
-    background-color: red;
+    transform: rotateX(-90deg);
+}
+
+.right {
+    width: 50px;
+    height: calc(100% + 2px);
+    right: -1px;
+    transform-origin: right;
+    transform: rotateY(-90deg);
+}
+
+.bottom {
+    width: calc(100% + 2px);
+    height: 50px;
+    bottom: -1px;
+    transform-origin: bottom;
+    transform: rotateX(90deg);
+}
+
+.left {
+    width: 50px;
+    height: calc(100% + 2px);
+    left: -1px;
+    transform-origin: left;
+    transform: rotateY(90deg);
 }
 
 .button:hover {
-    transform: translateZ(50px);
+    transform: translateZ(45px);
     border: 2px solid #000;
-    z-index: 2;
+    z-index: 3;
     animation: color-rainbow 4s infinite linear alternate, rainbow 2s infinite linear alternate-reverse;
+    box-shadow: 0 0 30px #000;
+    transform-style: preserve-3d;
+}
+
+.button:hover .edge {
+    background-color: #a3a3a3;
+    z-index: 2;
 }
