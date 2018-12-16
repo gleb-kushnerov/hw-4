@@ -31,6 +31,7 @@ div {
     white-space: nowrap;
     z-index: 2;
     transition: all 0.3s linear, height 0.3s linear;
+    transform-style: preserve-3d;
 }
 
 div:nth-child(odd):not(.edge) {
@@ -63,7 +64,6 @@ div:nth-child(even).gray-1 {
     margin: 0;
     flex: 1 1 auto;
     transform: rotate(-90deg);
-
 }
 
 .portfolio {
@@ -126,7 +126,6 @@ div:nth-child(even).gray-1 {
     transform: translateZ(var(--transform-size));
     z-index: 3;
     animation: color-rainbow 4s infinite linear alternate, rainbow 2s infinite linear alternate-reverse !important;
-    transform-style: preserve-3d;
 }
 
 .button:hover .edge {
